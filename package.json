@@ -1,0 +1,23 @@
+{
+  "name": "dose-tracker-backend",
+  "version": "1.0.0",
+  "description": "The backend for a simple web app to track medicine doses.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawnstolsig/dose-tracker-backend.git"
+  },
+  "author": "Shawn Stolsig",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/shawnstolsig/dose-tracker-backend/issues"
+  },
+  "homepage": "https://github.com/shawnstolsig/dose-tracker-backend#readme",
+  "dependencies": {
+    "apollo-server": "^3.6.3",
+    "graphql": "^16.3.0"
+  }
+}
