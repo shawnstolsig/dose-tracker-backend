@@ -4,7 +4,7 @@
   "description": "The backend for a simple web app to track medicine doses.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,12 @@
   },
   "homepage": "https://github.com/shawnstolsig/dose-tracker-backend#readme",
   "dependencies": {
+    "apollo-datasource": "^3.3.1",
     "apollo-server": "^3.6.3",
-    "graphql": "^16.3.0"
+    "dotenv": "^16.0.0",
+    "graphql": "^16.3.0",
+    "isemail": "^3.2.0",
+    "pg": "^8.7.3",
+    "sequelize": "^6.17.0"
   }
 }
