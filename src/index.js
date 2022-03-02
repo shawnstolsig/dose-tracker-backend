@@ -3,6 +3,7 @@ const { ApolloServer} = require("apollo-server")
 
 const { typeDefs } = require('./schema')
 // const { createStore } = require('./util')
+const sequelize = require('../models')
 const resolvers = require('./resolvers')
 const UserAPI = require('./datasources/user')
 
@@ -19,10 +20,11 @@ const server = new ApolloServer({
     //     const user = users && users[0] || null;
     //     return { user: { ...user.dataValues } };
     // },
+    context: { sequelize },
     typeDefs,
     resolvers,
     dataSources: () => ({
-        userAPI: new UserAPI({ store })
+        userAPI: new UserAPI({ store: sequelize })
     })
 })
 
