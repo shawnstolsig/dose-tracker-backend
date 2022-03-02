@@ -8,10 +8,10 @@ const typeDefs = gql`
     type User {
         id: ID!
         username: String!
-        createdAt: Date!
-        updatedAt: Date!
         lastLogin: Date!
         doses: [Dose]
+        createdAt: Date!
+        updatedAt: Date!
     }
     
     type Dose {
@@ -19,6 +19,8 @@ const typeDefs = gql`
         user: User!
         substance: Substance!
         takenAt: Date!
+        createdAt: Date!
+        updatedAt: Date!
     }    
     
     type Substance {
@@ -27,6 +29,7 @@ const typeDefs = gql`
         image: String
         user: User
         createdAt: Date!
+        updatedAt: Date!
     }
     ######################################
     

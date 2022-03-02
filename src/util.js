@@ -2,14 +2,9 @@
 const SQL = require('sequelize');
 
 module.exports.createStore = () => {
-    const Op = SQL.Op;
-    const operatorsAliases = {
-        $in: Op.in,
-    };
 
     const db = new SQL(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
         dialect: 'postgres',
-        operatorsAliases,
         logging: false,
     });
 
