@@ -18,6 +18,8 @@ const typeDefs = gql`
         id: ID!
         user: User!
         substance: Substance!
+        amount: Int
+        unit: String
         takenAt: Date!
         createdAt: Date!
         updatedAt: Date!
@@ -35,19 +37,19 @@ const typeDefs = gql`
     
     
     ##########  Response Types  ##########
-    type SubstanceCreateResponse {
+    type SubstanceResponse {
         success: Boolean!
         message: String
         substance: Substance
     }
 
-    type UserCreateResponse {
+    type UserResponse {
         success: Boolean!
         message: String
         user: User
     }
 
-    type DoseCreateResponse {
+    type DoseResponse {
         success: Boolean!
         message: String
         dose: Dose
@@ -63,9 +65,36 @@ const typeDefs = gql`
     }
     
     type Mutation {
-        login(username: String): User
-        createDose(userId: ID!, substanceId: ID!): DoseCreateResponse!
-        createUser(username: String): UserCreateResponse!
+        login(username: String): UserResponse!
+        logout: UserResponse!
+        registerUser(username: String): UserResponse!
+
+        createDose(
+            userId: ID!
+            substanceId: ID!
+            amount: Int
+            unit: String
+            ): DoseResponse!
+        editDose(
+            doseId: ID!
+            substanceId: ID
+            takenAt: Date
+            amount: Int
+            unit: String
+            ): DoseResponse! 
+        deleteDose(doseId: ID!): DoseResponse!
+
+        createSubstance(
+            userId: ID!
+            name: String!
+            image: String
+            ): SubstanceResponse!
+        editSubstance(
+            substanceId: ID!
+            name: String
+            image: String
+            ): SubstanceResponse!
+        deleteSubstance(substanceId: ID!): SubstanceResponse! 
     }
     ######################################
 
