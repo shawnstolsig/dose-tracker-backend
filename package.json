@@ -24,5 +24,8 @@
     "isemail": "^3.2.0",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
   }
 }
