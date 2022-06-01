@@ -7,10 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         static associate(models) {
             models.User.hasMany(models.Dose, {
-                foreignKey: 'userId'
+                foreignKey: 'userId', as: 'doses'
             })
             models.User.hasMany(models.Substance, {
-                foreignKey: 'userId'
+                foreignKey: 'userId', as: 'substances'
             })
         }
     }

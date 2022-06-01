@@ -6,8 +6,12 @@ module.exports = (sequelize, DataTypes) => {
 
     class Dose extends Model {
         static associate(models) {
-            models.Dose.belongsTo(models.User)
-            models.Dose.belongsTo(models.Substance)
+            models.Dose.belongsTo(models.User,{
+                foreignKey: 'userId', as: 'user'
+            })
+            models.Dose.belongsTo(models.Substance,{
+                foreignKey: 'substanceId', as: 'substance'
+            })
         }
     }
 
