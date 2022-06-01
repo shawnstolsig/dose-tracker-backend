@@ -7,26 +7,50 @@ class UserAPI extends DataSource {
         this.store = store;
     }
 
-    /**
-     * This is a function that gets called by ApolloServer when being setup.
-     * This function gets called with the datasource config including things
-     * like caches and context. We'll assign this.context to the request context
-     * here, so we can know about the user making requests
-     */
     initialize(config) {
         this.context = config.context;
     }
 
-    async findOrCreateUser({ username: usernameArg } = {}) {
-        const email = this?.context?.user ? this.context.user.username : usernameArg;
-        if (!email || !isEmail.validate(email)) return null;
-
-        const users = await this.store.users.findOrCreate({ where: { email } });
-        return users && users[0] ? users[0] : null;
+    async getUser({ userId } = {}){
+        return await this.store.User.findByPk(userId, {
+            include: [
+                { model: this.store.Substance, as: 'substances' },
+                { model: this.store.Dose, as: 'doses' }
+            ]
+        })
     }
 
+    async getUsers(){
+        return await this.store.User.findAll()
+    }
 
+    async getSubstances({ userId } = {}){
+        if(userId){
+            return await this.store.Substance.findAll( {
+                where: { userId },
+            })
+        }
+        return await this.store.Substance.findAll({
+            where: { userId: null }
+        })
+    }
 
+    async getDoses({ userId } = {}){
+        if(userId){
+            return await this.store.Dose.findAll( {
+                where: { userId },
+                include: [
+                    { model: this.store.User, as: 'user' },
+                    { model: this.store.Substance, as: 'substance' }
+                ]
+            })
+        }
+        return await this.store.Dose.findAll({
+            include: [
+                { model: this.store.Substance, as: 'substance' }
+            ]
+        })
+    }
 }
 
 module.exports = UserAPI;

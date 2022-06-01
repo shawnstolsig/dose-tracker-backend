@@ -20,7 +20,7 @@ const server = new ApolloServer({
     //     const user = users && users[0] || null;
     //     return { user: { ...user.dataValues } };
     // },
-    context: { sequelize },
+    // context: { sequelize },    // context is pass
     typeDefs,
     resolvers,
     dataSources: () => ({

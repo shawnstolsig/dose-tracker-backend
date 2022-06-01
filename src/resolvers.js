@@ -2,8 +2,10 @@ const { dateScalar } = require('../src/schema')
 
 const resolvers = {
     Query: {
-        getSubstances: (parent, args, context, info) => {},
-        getDoses: (parent, args, context, info) => {},
+        user:  (parent, { userId }, { dataSources: { userAPI } }, info) => userAPI.getUser({userId}),
+        users: (parent, args, { dataSources: { userAPI } }, info) => userAPI.getUsers(),
+        substances: (parent, { userId }, { dataSources: { userAPI } }, info) => userAPI.getSubstances({ userId }),
+        doses: (parent, { userId }, { dataSources: { userAPI } }, info) => userAPI.getDoses({userId}),
     },
     Mutation: {
         login: (parent, args, context, info) => {},

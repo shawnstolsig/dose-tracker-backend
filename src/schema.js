@@ -7,16 +7,18 @@ const typeDefs = gql`
     ############# Models/Types ###########
     type User {
         id: ID!
-        username: String!
+        email: String!
+        nickname: String!
         lastLogin: Date!
         doses: [Dose]
+        substances: [Substance]
         createdAt: Date!
         updatedAt: Date!
     }
     
     type Dose {
         id: ID!
-        user: User!
+        user: User
         substance: Substance!
         amount: Int
         unit: String
@@ -60,8 +62,10 @@ const typeDefs = gql`
     
     ########  Queries/Mutations ##########
     type Query {
-        getSubstances(userId: ID): [Substance]
-        getDoses(userId: ID!): [Dose]
+        users: [User]
+        user(userId: ID!): User
+        substances(userId: ID): [Substance]
+        doses(userId: ID): [Dose]
     }
     
     type Mutation {
